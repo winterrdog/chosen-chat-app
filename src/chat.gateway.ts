@@ -6,7 +6,7 @@ import {
 } from '@nestjs/websockets';
 import { Server } from 'socket.io';
 
-@WebSocketGateway(80)
+@WebSocketGateway()
 export class ChatGateway {
   @WebSocketServer()
   private static server: Server;
