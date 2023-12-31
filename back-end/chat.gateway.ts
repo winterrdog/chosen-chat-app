@@ -11,20 +11,20 @@ import { Server, Socket } from 'socket.io';
 @WebSocketGateway()
 export class ChatGateway implements OnGatewayDisconnect, OnGatewayConnection {
   @WebSocketServer()
-  private static server: Server;
+  private server: Server;
 
   handleConnection(client: Socket): void {
-    console.log(`Client connected: ${client.id}`);
-    client.handshake.headers.origin = '*'; // endeavor to limit the domains that can connect to your server
+    console.log(`[+] Client connected: ${client.id}`);
   }
 
   handleDisconnect(client: Socket) {
-    console.log(`Client disconnected: ${client.id}`);
+    console.log(`[+] Client disconnected: ${client.id}`);
   }
 
   @SubscribeMessage('message')
   handleMessage(@MessageBody() msg: string): void {
     // broadcast message to all connected ws clients
-    ChatGateway.server.emit('message', msg);
+    this.server.emit('message', msg);
+    console.log(`[+] Message broadcasted: ${msg}`);
   }
 }
