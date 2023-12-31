@@ -12,7 +12,7 @@ socket.on('message', ({ data }) => {
 // send a message to the server when the form is submitted
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function submitMessageToServer() {
-  socket.emit('message', { data: message.value });
+  socket.emit('message', { data: message.value.trim() });
 }
 
 function handleNewMessage(data) {
