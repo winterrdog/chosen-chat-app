@@ -1,4 +1,4 @@
-const socket = io('http://localhost:3000');
+const socket = io('http://localhost:3000', { transports: ['websocket'] });
 
 // extract message and messages from the DOM
 const message = document.getElementById('message');
