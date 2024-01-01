@@ -13,13 +13,13 @@ To run the front-end, you just need a browser. The front-end is a static HTML pa
 
 ## Backend
 
-### Installation
+#### Installation
 
 ```bash
 npm i
 ```
 
-### Running the app
+#### Running the app
 
 ```bash
 # development
@@ -32,7 +32,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-### Test
+#### Test
 
 ```bash
 # unit tests
