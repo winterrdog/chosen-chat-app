@@ -1,4 +1,4 @@
-# chosen-chat-app
+# The chosen-chat-room app
 
 a personal project geared to learning websockets and real-time chats or updates
 
