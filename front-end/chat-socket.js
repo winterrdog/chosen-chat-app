@@ -13,6 +13,7 @@ socket.on('message', ({ data }) => {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function submitMessageToServer() {
   socket.emit('message', { data: message.value.trim() });
+  clearInput();
 }
 
 function handleNewMessage(data) {
@@ -21,10 +22,15 @@ function handleNewMessage(data) {
 
 function createNewMessage(data) {
   // create a new list item
-  const textMsg = document.createElement('li');
+  const textMsg = document.createElement('div');
+  textMsg.classList.add('message-div');
 
   // add the message to the DOM
   textMsg.appendChild(document.createTextNode(data));
 
   return textMsg;
+}
+
+function clearInput() {
+  message.value = '';
 }

@@ -1,11 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
     margin: 0px;
     padding: 0px;
     background-image: url(./assets/joanna-kosinska-uGcDWKN91Fs-unsplash.jpg);
-    background-position: auto;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
 }
 
-h1 {
-    margin: 0px;
+:root {
+    font-size: calc(0.4vh + 1vw);
+    font-family: 'Inter', sans-serif;
+}
+
+.main {
+    width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background-color: rgb(256, 256, 256, 0.3);
+    padding: 20px;
+}
+
+.title {
+    font-size: 3rem;
+    font-family: 'Playfair Display';
+    font-weight: 800;
+}
+
+.emp {
+    font-style: italic;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+}
+
+#messages {
+    overflow-y: auto;
+    height: 90vh;
+}
+
+.submit-div {
+    height: 2rem;
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: 12fr 1fr;
+}
+
+.submit-div > input {
+    border-radius: 25px;
+    border: 0px;
+    padding-left: 10px;
+    font-size: 1rem;
+}
+
+.submit-div > input:focus {
+    outline: none;
+}
+
+.submit-div > button {
+    justify-self: right;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px;
+    background-color: white;
+}
+
+svg {
+    padding: 0px;
+    fill: rgb(165, 126, 0);
+}
+
+.message-div {
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
 }
