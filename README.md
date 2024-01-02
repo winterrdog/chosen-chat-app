@@ -25,7 +25,7 @@ To run the front-end, you just need a browser. The front-end is a static HTML pa
 bash ./containerize.sh
 ```
 
-This will build the app's docker image from DockerHub and run the container. You can then access the app at `http://localhost:3000`
+This will pull the app's image from docker hub and run it in a container. The app will be running on port `3000` at a URL of `http://localhost:3000`
 
 ## NOTES
 
