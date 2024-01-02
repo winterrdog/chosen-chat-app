@@ -15,35 +15,17 @@ To run the front-end, you just need a browser. The front-end is a static HTML pa
 
 #### Installation
 
-```bash
-npm i
-```
+- Make sure you've `docker` installed on your machine
 
 #### Running the app
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-#### Test
+- This app is containerized, so you can run it by running the following command in the root directory of the project
 
 ```bash
-# unit tests
-$ npm test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+bash ./containerize.sh
 ```
+
+This will build the app's docker image from DockerHub and run the container. You can then access the app at `http://localhost:3000`
 
 ## NOTES
 
