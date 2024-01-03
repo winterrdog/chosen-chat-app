@@ -1,4 +1,4 @@
-# chosen-chat-app
+# The chosen-chat-room app
 
 a personal project geared to learning websockets and real-time chats or updates
 
@@ -13,37 +13,19 @@ To run the front-end, you just need a browser. The front-end is a static HTML pa
 
 ## Backend
 
-### Installation
+#### Installation
+
+- Make sure you've `docker` installed on your machine. *The rest of the dependencies will be installed in a container so you don't need to worry about them*
+
+#### Running the app
+
+- This app is containerized, so you can run it by running the following command in the root directory of the app
 
 ```bash
-npm i
+cd back-end && bash ./containerize.sh
 ```
 
-### Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-### Test
-
-```bash
-# unit tests
-$ npm test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
+This will pull the app's image from docker hub and run it in a container. The app will be running on port `3000` at a URL of `http://localhost:3000`
 
 ## NOTES
 
