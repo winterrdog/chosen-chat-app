@@ -1,2 +1,8 @@
 dist
 node_modules
+.prettierrc
+.eslintrc.js
+containerize.sh
+test
+.dockerignore
+Dockerfile
