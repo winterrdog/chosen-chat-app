@@ -41,6 +41,9 @@ body {
 #messages {
     overflow-y: auto;
     height: 90vh;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: baseline;
 }
 
 .submit-div {
@@ -54,7 +57,7 @@ body {
     border-radius: 25px;
     border: 0px;
     padding-left: 10px;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .submit-div > input:focus {
@@ -80,7 +83,16 @@ svg {
 
 .message-div {
     background-color: white;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    padding-right: 20px;
+
+    border-bottom-left-radius: 0px;
+}
+
+.ref {
+    margin-top: 30px;
+    font-size: 0.5rem;
 }
