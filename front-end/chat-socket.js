@@ -28,7 +28,9 @@ function submitMessageToServer() {
 }
 
 function handleNewMessage(data) {
-    messages.appendChild(createNewMessage(data));
+    let textMessage = createNewMessage(data);
+    messages.insertBefore(textMessage, messages.firstChild);
+    scrollInPlace(textMessage);
 }
 
 function createNewMessage(data) {
@@ -43,4 +45,8 @@ function createNewMessage(data) {
 
 function clearInput() {
     message.value = "";
+}
+
+function scrollInPlace(node) {
+    node.scrollIntoView({ behaviour: "smooth", block: "end" });
 }
