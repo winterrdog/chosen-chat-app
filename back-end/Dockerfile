@@ -1,6 +1,7 @@
 FROM    node:current-alpine3.19@sha256:9b54d010b382f0ef176dc93cd829bd4f2a905092b260746b3999aa824c9b7121
 
 LABEL   author="winterrdog"
+LABEL   description="backend for chat room app. Written in NestJS using TypeScript/Node.js"
 
 # set app directory
 ARG     APP_DIR=/usr/src/app
