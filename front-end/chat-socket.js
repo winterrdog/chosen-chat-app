@@ -5,8 +5,8 @@ const message = document.getElementById("message");
 const messages = document.getElementById("messages");
 
 // listen for the 'message' event from the server
-socket.on("message", ({ data }) => {
-    handleNewMessage(data);
+socket.on("message", ({ data, id }) => {
+    handleNewMessage(data, id);
 });
 
 // listen for the 'history' event from the server
@@ -23,12 +23,15 @@ socket.on("chat-history", ({ data: history }) => {
 // send a message to the server when the form is submitted
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function submitMessageToServer() {
-    socket.emit("message", { data: message.value.trim() });
+    socket.emit("message", { data: message.value.trim(), id: socket.id });
     clearInput();
 }
 
-function handleNewMessage(data) {
+function handleNewMessage(data, id) {
     let textMessage = createNewMessage(data);
+    if (id == socket.id) {
+        textMessage.classList.add('my-own-message');
+    }
     messages.insertBefore(textMessage, messages.firstChild);
     scrollInPlace(textMessage);
 }
