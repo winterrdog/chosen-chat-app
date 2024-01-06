@@ -3,7 +3,7 @@
 body {
     margin: 0px;
     padding: 0px;
-    background-image: url(./assets/joanna-kosinska-uGcDWKN91Fs-unsplash.jpg);
+    background-image: url(./assets/6.jpg);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -11,7 +11,8 @@ body {
 }
 
 :root {
-    font-size: calc(0.4vh + 1vw);
+    font-size: 25px;
+    /* font-size: calc(0.4vh + 1vw); */
     font-family: 'Inter', sans-serif;
 }
 
@@ -19,7 +20,9 @@ body {
     width: 70%;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    background-color: rgb(256, 256, 256, 0.3);
+    background-color: rgb(256, 256, 256, 0.2);
+    box-shadow: 0 0 100px 120px rgb(256, 256, 256, 0.2);
+    column-gap: 1rem;
     padding: 20px;
 }
 
@@ -43,7 +46,7 @@ body {
     height: 90vh;
     display: flex;
     flex-direction: column-reverse;
-    align-items: baseline;
+    align-items: flex-start;
 }
 
 .submit-div {
@@ -51,6 +54,7 @@ body {
     margin-top: auto;
     display: grid;
     grid-template-columns: 12fr 1fr;
+    column-gap: 0.4rem;
 }
 
 .submit-div > input {
@@ -96,3 +100,26 @@ svg {
     margin-top: 30px;
     font-size: 0.5rem;
 }
+
+.my-own-message {
+    background-color: rgb(255, 246, 195);
+}
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(255, 246, 195) rgb(256, 256, 256, 0.2);
+}
+   
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+width: 12px;
+}
+   
+*::-webkit-scrollbar-track {
+background: rgb(256, 256, 256, 0.2);
+}
+
+*::-webkit-scrollbar-thumb {
+background-color: rgb(235, 226, 179);
+}   
