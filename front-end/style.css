@@ -37,8 +37,13 @@ body {
 }
 
 .chat {
+    padding: 10px;
     display: flex;
     flex-direction: column;
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    background-color: rgb(256, 256, 256, 0.1);
+    box-shadow: 0 0 50px 50px rgb(256, 256, 256, 0.1);
 }
 
 #messages {
@@ -50,14 +55,16 @@ body {
 }
 
 .submit-div {
+    box-sizing: border-box;
     height: 2rem;
     margin-top: auto;
     display: grid;
     grid-template-columns: 12fr 1fr;
-    column-gap: 0.4rem;
+    align-items: center;
 }
 
 .submit-div > input {
+    height: 1.6rem;
     border-radius: 25px;
     border: 0px;
     padding-left: 10px;
@@ -71,8 +78,8 @@ body {
 .submit-div > button {
     justify-self: right;
     border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
+    height: 1.6rem;
+    width: 1.6rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,7 +120,7 @@ svg {
    
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-width: 12px;
+width: 3px;
 }
    
 *::-webkit-scrollbar-track {
