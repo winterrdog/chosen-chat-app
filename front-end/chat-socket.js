@@ -1,4 +1,4 @@
-const socket = io("http://localhost:3000", { transports: ["websocket"] });
+const socket = io("ws://localhost:3000", { transports: ["websocket"] });
 
 // extract message and messages from the DOM
 const message = document.getElementById("message");
@@ -30,7 +30,7 @@ function submitMessageToServer() {
 function handleNewMessage(data, id) {
     let textMessage = createNewMessage(data);
     if (id == socket.id) {
-        textMessage.classList.add('my-own-message');
+        textMessage.classList.add("my-own-message");
     }
     messages.insertBefore(textMessage, messages.firstChild);
     scrollInPlace(textMessage);
