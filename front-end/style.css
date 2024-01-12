@@ -4,6 +4,8 @@ body {
     margin: 0px;
     padding: 0px;
     background-image: url(./assets/6.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100vh;
     display: flex;
     justify-content: center;
