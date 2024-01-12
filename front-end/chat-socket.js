@@ -1,4 +1,6 @@
-const socket = io("ws://localhost:3000", { transports: ["websocket"] });
+const socket = io("wss://chosen-chat-app-production.up.railway.app", {
+    transports: ["websocket"],
+});
 
 // extract message and messages from the DOM
 const message = document.getElementById("message");
