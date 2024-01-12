@@ -5,6 +5,8 @@ a personal project geared to learning websockets and real-time chats or updates
 ## Frontend
 The front-end is a static HTML page that uses the backend API to send and receive messages.
 
+### Note: The front end is only styled for Desktop.
+
 #### The front-end is hosted here
 --> https://muchubatactics.github.io/chosen-chat-app/  <--
 
