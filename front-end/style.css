@@ -98,6 +98,7 @@ body {
     padding-left: 15px;
     padding-right: 15px;
     font-size: 0.8rem;
+    background-color: rgb(255, 246, 195);
 }
 
 .submit-div > input:focus {
@@ -118,7 +119,7 @@ body {
 
 svg {
     padding: 0px;
-    fill: rgb(165, 126, 0);
+    fill: rgb(92, 92, 92);
 }
 
 .message-div {
