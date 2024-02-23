@@ -9,3 +9,7 @@ submitButton.addEventListener('mouseout', () => {
     submitButton.style = 'background-color: white';
     submitButton.childNodes[1].style = 'fill: rgb(165, 126, 0);';
 });
+document.getElementById('message').addEventListener('input', () => {
+    console.log('here');
+    window.scrollTo(0, document.body.scrollHeight);
+})
