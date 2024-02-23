@@ -27,7 +27,7 @@ background-color: rgb(235, 226, 179);
 
 body {
     margin: 0px;
-    padding: 0px;
+    padding-bottom: 20px;
     background-image: url(./assets/6.jpg);
     background-repeat: no-repeat;
     background-size: cover;
