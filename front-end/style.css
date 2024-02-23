@@ -1,11 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(255, 246, 195) rgb(256, 256, 256, 0.2);
+}
+   
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+width: 3px;
+}
+   
+*::-webkit-scrollbar-track {
+background: rgb(256, 256, 256, 0.2);
+}
+
+*::-webkit-scrollbar-thumb {
+background-color: rgb(235, 226, 179);
+}   
+
+.small {
+    display: none;
+}
+
 body {
     margin: 0px;
     padding: 0px;
     background-image: url(./assets/6.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -19,7 +45,7 @@ body {
 }
 
 .main {
-    width: 70%;
+    max-width: 70%;
     display: grid;
     grid-template-columns: 1fr 2fr;
     background-color: rgb(256, 256, 256, 0.2);
@@ -62,13 +88,15 @@ body {
     display: grid;
     grid-template-columns: 12fr 1fr;
     align-items: center;
+    column-gap: 10px;
 }
 
 .submit-div > input {
     height: 1.6rem;
     border-radius: 25px;
     border: 0px;
-    padding-left: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     font-size: 0.8rem;
 }
 
@@ -100,6 +128,7 @@ svg {
     border-radius: 15px;
     font-size: 0.7rem;
     padding-right: 20px;
+    max-width: 95%;
 
     border-bottom-left-radius: 0px;
 }
@@ -113,21 +142,92 @@ svg {
     background-color: rgb(255, 246, 195);
 }
 
-/* Works on Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: rgb(255, 246, 195) rgb(256, 256, 256, 0.2);
-}
-   
-/* Works on Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-width: 3px;
-}
-   
-*::-webkit-scrollbar-track {
-background: rgb(256, 256, 256, 0.2);
+@media only screen and (max-width: 1024px) {
+    .main {
+        max-width: 90%;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    :root {
+        font-size: 30px;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+
+    .message-div {
+        font-size: 0.7rem;
+        max-width: 90%;
+    }
 }
 
-*::-webkit-scrollbar-thumb {
-background-color: rgb(235, 226, 179);
-}   
+@media only screen and (max-width: 600px) {
+    .main {
+        grid-template-rows: 1fr 6fr;
+        grid-template-columns: 1fr;
+    }
+
+    :root {
+        font-size: 20px;
+    }
+
+    .normal {
+        display: none;
+    }
+
+    .small {
+        display: block;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .ref {
+        margin-top: 5px;
+    }
+
+    #messages {
+        height: 75vh;
+        margin-bottom: 10px;
+    }
+
+    .message-div {
+        font-size: 0.8rem;
+        max-width: 85%;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .main {
+        grid-template-rows: 2fr 7fr;
+        grid-template-columns: 1fr;
+    }
+
+    #messages {
+        height: 66vh;
+    }
+
+}
+
+@media only screen and (max-width: 280px) {
+    body {
+        height: 100%;
+    }
+
+    :root {
+        font-size: 15px;
+    }
+
+    .main {
+        grid-template-rows: 2fr 7fr;
+        grid-template-columns: 1fr;
+        height: 100%;
+    }
+
+    #messages {
+        height: 66vh;
+    }
+
+}
