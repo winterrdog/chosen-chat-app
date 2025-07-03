@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import {
+  ConnectedSocket,
   MessageBody,
   OnGatewayConnection,
   OnGatewayDisconnect,
@@ -9,8 +10,8 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
-// add small chat history db
-const chatHistory: string[] = [];
+// Store chat history as an object mapping room names to message arrays
+const chatHistory: Record<string, { message: string; id: string }[]> = {};
 
 @WebSocketGateway()
 export class ChatGateway implements OnGatewayDisconnect, OnGatewayConnection {
@@ -23,34 +24,76 @@ export class ChatGateway implements OnGatewayDisconnect, OnGatewayConnection {
     this.logger.log('ChatGateway initialized');
   }
 
-  handleConnection(client: Socket): void {
-    // send all current chat history to new client
-    if (chatHistory.length > 0) {
-      client.emit('chat-history', { data: chatHistory });
-      this.logger.log(`Chat history sent to client: ${client.id}`);
-      this.logger.debug(`Chat history: ${chatHistory}`);
+  handleConnection(@ConnectedSocket() client: Socket): void {
+    const room = (client.handshake.query.room as string) || 'general';
+    client.join(room);
+    this.logger.log(`Client ${client.id} joined room: ${room}`);
+
+    // Send room-specific chat history to the new client
+    if (chatHistory[room] && chatHistory[room].length > 0) {
+      client.emit('chat-history', { data: chatHistory[room], room: room });
+      this.logger.log(
+        `Chat history for room ${room} sent to client: ${client.id}`,
+      );
+      this.logger.debug(
+        `Chat history for room ${room}: ${JSON.stringify(chatHistory[room])}`,
+      );
     }
-    this.logger.log(`Client connected: ${client.id}`);
+    this.logger.log(
+      `Client connected: ${client.id} to room ${room}`,
+    );
   }
 
-  handleDisconnect(client: Socket) {
-    this.logger.log(`Client disconnected: ${client.id}`);
+  handleDisconnect(@ConnectedSocket() client: Socket): void {
+    // For logging purposes, find out which rooms the client was in.
+    // client.rooms is a Set that includes the client's own ID as a room.
+    const rooms = Array.from(client.rooms).filter((r) => r !== client.id);
+    this.logger.log(
+      `Client disconnected: ${client.id}. Was in rooms: ${rooms.join(', ')}`,
+    );
   }
 
   @SubscribeMessage('message')
-  handleMessage(@MessageBody() wsData: Record<string, any>): void {
-    this.logger.debug(`Received websocket data: ${JSON.stringify(wsData)}`);
+  handleMessage(
+    @MessageBody() wsData: { data: string; room: string },
+    @ConnectedSocket() client: Socket,
+  ): void {
+    this.logger.debug(
+      `Received websocket data from ${client.id}: ${JSON.stringify(wsData)}`,
+    );
 
-    // update chat history
-    const message: string = wsData.data;
-    this.logger.debug(`Received message: ${message}`);
+    const messageContent: string = wsData.data;
+    const room: string = wsData.room;
 
-    chatHistory.push(message);
-    this.logger.debug(`Updated chat history to: ${chatHistory}`);
+    if (!room) {
+      this.logger.warn(`Message received without room from client ${client.id}`);
+      return;
+    }
 
-    // broadcast message to all connected ws clients
-    this.server.emit('message', wsData);
+    this.logger.debug(
+      `Received message for room ${room} from ${client.id}: ${messageContent}`,
+    );
 
-    this.logger.log(`Message broadcasted: ${message}`);
+    // Initialize history for the room if it doesn't exist
+    if (!chatHistory[room]) {
+      chatHistory[room] = [];
+    }
+
+    const messageObject = { message: messageContent, id: client.id };
+    chatHistory[room].push(messageObject);
+    this.logger.debug(
+      `Updated chat history for room ${room} to: ${JSON.stringify(
+        chatHistory[room],
+      )}`,
+    );
+
+    // Broadcast message to all connected ws clients in the specific room
+    this.server
+      .to(room)
+      .emit('message', { data: messageContent, id: client.id, room: room });
+
+    this.logger.log(
+      `Message broadcasted to room ${room}: ${messageContent}`,
+    );
   }
 }

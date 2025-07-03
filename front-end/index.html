@@ -22,15 +22,27 @@
         <div class="ref">
           Photo from Red Dead Redemption 2
         </div>
-
       </div>
       <div class="chat">
-        <div id="messages"></div>
-        <div class="submit-div">
-          <input id="message" type="text" autofocus />
-          <button onclick="submitMessageToServer()">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
+        <div id="room-selection" class="room-selection-div">
+          <input
+            type="text"
+            id="roomName"
+            placeholder="Enter room name (e.g., general)"
+            autofocus
+          />
+          <button id="joinRoomButton" onclick="joinRoomAndConnect()">
+            Join Room
+          </button>
+        </div>
+        <div id="chat-area" style="display: none">
+          <div id="currentRoomDisplay"></div>
+          <div id="messages"></div>
+          <div class="submit-div">
+            <input id="message" type="text" />
+            <button onclick="submitMessageToServer()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
               height="24"
               viewBox="0 -960 960 960"
               width="24"
